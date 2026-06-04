@@ -46,7 +46,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-store/
-nodejs/node_cache/
+nodejs/
 
 # Build/dist artifacts
 build/
