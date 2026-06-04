@@ -55,8 +55,8 @@ dist/
 tmp/
 temp/
 
-# Claude Code local/private state
-# Keep .claude/skills/** tracked; only ignore local runtime/config artifacts.
+# Claude Code local/private state and project-local installed skills
+.claude/skills/
 .claude/settings.local.json
 .claude/scheduled_tasks.json
 .claude/worktrees/
