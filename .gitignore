@@ -1,0 +1,66 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/editor local state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs and runtime output
+logs/
+*.log
+*.out
+*.err
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Node.js dependencies and caches
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+nodejs/node_cache/
+
+# Build/dist artifacts
+build/
+dist/
+.tmp/
+tmp/
+temp/
+
+# Claude Code local/private state
+# Keep .claude/skills/** tracked; only ignore local runtime/config artifacts.
+.claude/settings.local.json
+.claude/scheduled_tasks.json
+.claude/worktrees/
+.claude/transcripts/
+
+# Project-local long-term memory can contain private notes; do not publish by default.
+memory/
