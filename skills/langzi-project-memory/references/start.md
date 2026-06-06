@@ -11,29 +11,31 @@
 执行以下流程：
 
 1. 根据当前 `CLAUDE.md` 中的 Task Mode 规则判断任务类型，不在此处重复完整定义。
-2. 根据当前 issue、验收标准和任务涉及模块按需选择 memory，读取顺序优先参考：
-   1. 当前 issue 和验收标准
-   2. 当前任务涉及的模块
-   3. 与任务相关的 memory 文件
-3. `start` 只读取与当前任务直接相关的项目记忆；不得因为任务属于 Standard、Complex 或 Risky，就无条件读取全部 `memory/`。
-4. 如果 `memory/README.md` 存在，应优先参考其中的文件职责、格式和更新约定。
-5. 对 Standard、Complex、Risky 任务，优先考虑以下核心文件，但“考虑”不等于“必读”；如果文件与当前任务无关，不读取该文件：
+2. `start` 必须按需读取 memory；不得在启动后自动读取整个 `memory/` 目录，也不得为了“全面了解项目”全量读取所有 memory 文件。
+3. 默认只读取一个索引文件作为入口：
+   1. 如果 `memory/README.md` 存在，优先读取它。
+   2. 如果 `memory/README.md` 不存在但 `memory/index.md` 存在，读取 `memory/index.md`。
+   3. 如果两个索引文件都不存在，不得退化为全量读取；只能根据文件名、当前任务类型和必要的搜索结果选择候选文件。
+4. 根据用户问题类型、当前 issue / 验收标准、任务涉及模块，以及索引中对 memory 文件职责 / 定义的描述，先选择最相关的 `1～2` 个 memory 文件读取。
+5. 只有在读取索引和首批 `1～2` 个相关 memory 后，经过明确分析仍不足以回答当前任务，才允许继续读取第 `3` 个及更多 memory 文件；继续读取时应说明需要扩展读取范围的原因。
+6. 对超过 `300` 行的 memory 文件，禁止整文件读取；必须先用搜索 / grep 定位关键词、标题或相关段落，再只读取命中的相关片段。
+7. 对 Standard、Complex、Risky 任务，优先考虑以下核心文件，但“考虑”不等于“必读”；只能在它们与当前问题类型和索引定义匹配时读取：
    - `memory/project-overview.md`
    - `memory/current-progress.md`
    - `memory/active-issues.md`
    - `memory/decisions.md`
    - `memory/handoff.md`
-6. 如果任务涉及运行、测试、构建、依赖或环境，还要考虑读取：
+8. 如果任务涉及运行、测试、构建、依赖或环境，再考虑读取：
    - `memory/environment.md`
    - `memory/validation-log.md`
-7. 如果任务涉及 bug、风险、兼容性或历史问题，还要考虑读取：
+9. 如果任务涉及 bug、风险、兼容性或历史问题，再考虑读取：
    - `memory/known-problems.md`
-8. 如果任务需要参考已完成 issue，还要考虑读取：
+10. 如果任务需要参考已完成 issue，再考虑读取：
    - `memory/issue-history.md`
-9. 如果某个相关 memory 文件不存在，记录重要缺失情况并继续处理其他可用文件。
-10. 只输出与当前任务直接相关的简洁记忆摘要，不要复制全部 memory 原文。
-11. 无需枚举或解释所有未读取的 memory 文件；只说明会影响当前任务的重要缺失文件。
-12. 按当前 `CLAUDE.md` 的 Contract-First Development 规则检查可能受影响的合同边界；如果暂未发现合同变化，可写“暂未发现合同变更”。
+11. 如果某个相关 memory 文件不存在，记录重要缺失情况并继续处理其他可用文件。
+12. 只输出与当前任务直接相关的简洁记忆摘要，不要复制全部 memory 原文。
+13. 无需枚举或解释所有未读取的 memory 文件；只说明会影响当前任务的重要缺失文件。
+14. 按当前 `CLAUDE.md` 的 Contract-First Development 规则检查可能受影响的合同边界；如果暂未发现合同变化，可写“暂未发现合同变更”。
 
 输出模板：
 
